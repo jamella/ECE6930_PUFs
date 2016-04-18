@@ -15,7 +15,7 @@
 //synthesis translate_on
 
 module bch_dec_enc_univ_top #(
-	                        parameter P_D_WIDTH   = 16
+	                        parameter P_D_WIDTH   = 64
 	                        )
 	                        (
 							 input wire[P_D_WIDTH-1:0]                     d_i,
