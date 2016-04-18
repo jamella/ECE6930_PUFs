@@ -15,7 +15,7 @@
 //synthesis translate_on
 
 
-module bch_dec_dcd_univ_top #(parameter P_D_WIDTH = 32) 
+module bch_dec_dcd_univ_top #(parameter P_D_WIDTH = 64) 
 	                (
 					 input  wire[P_D_WIDTH-1:0]                     d_i,
 					 input  wire[fn_ecc_synd_width(P_D_WIDTH)-1:0]  ecc_i, 
