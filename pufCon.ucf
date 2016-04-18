@@ -8,5 +8,22 @@ NET "L5" LOC = "N4";
 NET "L6" LOC = "P4";
 NET "L7" LOC = "G1";
 
+NET "SW1" LOC = "P11";
+
 NET "Clk" LOC = "B8"; #need clk pin
 NET "Clk" PERIOD = 20ns;
+
+//NET "astb"  LOC = "F2"  ;
+//NET "dstb"  LOC = "F1"  ;
+
+//NET "pwr"  LOC = "C2"  ;
+//NET "pwait"  LOC = "D2"  ;
+
+//NET "pdb<0>" LOC = "N2"; # Bank = 2
+//NET "pdb<1>" LOC = "M2"; # Bank = 2
+//NET "pdb<2>" LOC = "M1"; # Bank = 3
+//NET "pdb<3>" LOC = "L1"; # Bank = 3
+//NET "pdb<4>" LOC = "L2"; # Bank = 3
+//NET "pdb<5>" LOC = "H2"; # Bank = 3
+//NET "pdb<6>" LOC = "H1"; # Bank = 3
+//NET "pdb<7>" LOC = "H3"; # Bank = 3
