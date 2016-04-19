@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.12.14)  18 APR 2016 22:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.12.14)  18 APR 2016 23:26
 entering extended mode
 **report.tex
 (report.tex
@@ -347,10 +347,18 @@ File: keyGen.png Graphic file (type png)
  <use keyGen.png>
 Package pdftex.def Info: keyGen.png used on input line 145.
 (pdftex.def)             Requested size: 219.4443pt x 77.72769pt.
+ [2 <./DAPUF.png> <./Chain.png> <./keyGen.png>] <bch.png, id=21, 347.04657pt x 
+304.13625pt>
+File: bch.png Graphic file (type png)
 
-Underfull \vbox (badness 1515) has occurred while \output is active []
+<use bch.png>
+Package pdftex.def Info: bch.png used on input line 163.
+(pdftex.def)             Requested size: 260.28429pt x 228.10162pt.
 
- [2 <./DAPUF.png> <./Chain.png> <./keyGen.png>]
+Overfull \hbox (14.56618pt too wide) in paragraph at lines 163--164
+ [][] 
+ []
+
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -362,26 +370,25 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the US letter (8.5in X 11in) paper size.
 
-[3
-
-] (report.aux) ) 
+[3 <./bch.png>] (report.aux) ) 
 Here is how much of TeX's memory you used:
- 3992 strings out of 493698
- 56242 string characters out of 3144408
+ 3997 strings out of 493698
+ 56296 string characters out of 3144408
  151763 words of memory out of 3000000
- 7292 multiletter control sequences out of 15000+200000
+ 7296 multiletter control sequences out of 15000+200000
  36949 words of font info for 72 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 27i,9n,49p,755b,303s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C
-:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Progra
-m Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/M
-iKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
-ype1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/u
-tmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on report.pdf (3 pages, 144470 bytes).
+ 27i,9n,49p,979b,303s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/font
+name/8r.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.
+pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/P
+rogram Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKT
+eX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
+e1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr
+i8a.pfb>
+Output written on report.pdf (3 pages, 160107 bytes).
 PDF statistics:
- 44 PDF objects out of 1000 (max. 8388607)
+ 46 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

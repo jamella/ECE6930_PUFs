@@ -152,6 +152,17 @@ As shown in Figure 3, it is also a good idea to hash the output from the ECC to 
 
 \section{RESULTS}
  
+The 3-1 DAPUF was successfully implemented on a Digilent Nexys 2 FPGA board.  The system clock was running at 50 MHz.  The initial design was planned to have a challenge of 64-bits.  However, the 3-1 DAPUF requires over 20,000 Look Up Tables (LUTs) and the Nexys 2 only has 17,000 LUTs.  As a result of this limitation, a key of 32-bits was chosen.
+
+We tested 10 different challenges 100 times each to measure \emph{$\mu$intra} and \emph{$\mu$inter}.  We also measured \emph{$\mu$intra} at the normal FPGA operating temperature of 85 degrees Fahrenheit and at a hotter temperature of 185 degrees Fahrenheit.  To measure \emph{$\mu$inter}  we ran the same challenge messages on 2 different FPGAs.  Our  \emph{$\mu$intra} at normal temperature was $4.29\%$ and at the hotter temperature it was $7.03\%$.  A slight decrease in the quality of \emph{$\mu$intra} was observed at higher temperatures, but overall it retained good results.  The \emph{$\mu$inter} that we measured was $23.82\%$.  This \emph{$\mu$inter} could be a lot better, but it should be sufficient for secret key generation because the output of the ECC is typically sent through a HASH function.  One reason we achieved a low \emph{$\mu$inter} is because we were not able to enforce symmetry.   This would be fixed in a later revision.
+        
+A free open source BCH IP core was found on the internet and it was utilized in the design.  The BCH core is able to correct 2 error bits.  In order to make sure that the challenge message has 32 reliable bits, the 3-1 DAPUF for this design produces 40 response bits.  This allows the output response to have 8 bits that can be tossed out after the majority voting.  The BCH core was verified to correct two errors and this can be seen in Figure 4.
+
+\begin{figure}[thpb]
+	\centering
+	\includegraphics[scale=.75]{bch}
+   \caption{\emph{pufRes} is the correct output, \emph{pufRes2} is the output with 2 error bits, and \emph{response} is the corrected output response}
+\end{figure}
 
 \section{CONCLUSION}
 
