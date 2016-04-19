@@ -3,7 +3,7 @@
 module DAPUF(challenge, exciteL, exciteR, response);
 
 	//input [63:0] challenge;
-	input [15:0] challenge;
+	input [39:0] challenge;
 	
 	input exciteL, exciteR;
 	output reg response;
@@ -48,7 +48,7 @@ module SELECTOR_CHAIN(signal_L, signal_R, challenge, preresponseL, preresponseR)
 	 input wire signal_L;
 	 
     //input wire [63:0] challenge;
-	 input wire [15:0] challenge;
+	 input wire [39:0] challenge;
 	 
     output preresponseL, preresponseR;
 
@@ -68,9 +68,9 @@ module SELECTOR_CHAIN(signal_L, signal_R, challenge, preresponseL, preresponseR)
     wire [1:0] result12;
     wire [1:0] result13;
     wire [1:0] result14;
-//    wire [1:0] result15;
+    wire [1:0] result15;
 
-/*
+
     wire [1:0] result16;
     wire [1:0] result17;
     wire [1:0] result18;
@@ -87,7 +87,7 @@ module SELECTOR_CHAIN(signal_L, signal_R, challenge, preresponseL, preresponseR)
     wire [1:0] result28;
     wire [1:0] result29;
     wire [1:0] result30;
-    wire [1:0] result31;
+	 wire [1:0] result31;
 
 
     wire [1:0] result32;
@@ -97,8 +97,8 @@ module SELECTOR_CHAIN(signal_L, signal_R, challenge, preresponseL, preresponseR)
     wire [1:0] result36;
     wire [1:0] result37;
     wire [1:0] result38;
-    wire [1:0] result39;
-
+//    wire [1:0] result39;
+/*
     wire [1:0] result40;
     wire [1:0] result41;
     wire [1:0] result42;
@@ -159,12 +159,11 @@ module SELECTOR_CHAIN(signal_L, signal_R, challenge, preresponseL, preresponseR)
     (* KEEP = "TRUE" *) MUX mux13_1(result12[0], result12[1], challenge[13], result13[1]);
     (* KEEP = "TRUE" *) MUX mux14_0(result13[1], result13[0], challenge[14], result14[0]);
     (* KEEP = "TRUE" *) MUX mux14_1(result13[0], result13[1], challenge[14], result14[1]);
-    //(* KEEP = "TRUE" *) MUX mux15_0(result14[1], result14[0], challenge[15], result15[0]);
-    //(* KEEP = "TRUE" *) MUX mux15_1(result14[0], result14[1], challenge[15], result15[1]);
-	 (* KEEP = "TRUE" *) MUX mux15_0(result14[1], result14[0], challenge[15], preresponseR);
-    (* KEEP = "TRUE" *) MUX mux15_1(result14[0], result14[1], challenge[15], preresponseL);
+    (* KEEP = "TRUE" *) MUX mux15_0(result14[1], result14[0], challenge[15], result15[0]);
+    (* KEEP = "TRUE" *) MUX mux15_1(result14[0], result14[1], challenge[15], result15[1]);
+	 
 
-/*            
+            
     (* KEEP = "TRUE" *) MUX mux16_0(result15[1], result15[0], challenge[16], result16[0]);
     (* KEEP = "TRUE" *) MUX mux16_1(result15[0], result15[1], challenge[16], result16[1]);
     (* KEEP = "TRUE" *) MUX mux17_0(result16[1], result16[0], challenge[17], result17[0]);
@@ -199,7 +198,7 @@ module SELECTOR_CHAIN(signal_L, signal_R, challenge, preresponseL, preresponseR)
     (* KEEP = "TRUE" *) MUX mux31_0(result30[1], result30[0], challenge[31], result31[0]);
     (* KEEP = "TRUE" *) MUX mux31_1(result30[0], result30[1], challenge[31], result31[1]);
  
- 
+
     (* KEEP = "TRUE" *) MUX mux32_0(result31[1], result31[0], challenge[32], result32[0]);
     (* KEEP = "TRUE" *) MUX mux32_1(result31[0], result31[1], challenge[32], result32[1]);
     (* KEEP = "TRUE" *) MUX mux33_0(result32[1], result32[0], challenge[33], result33[0]);
@@ -214,9 +213,12 @@ module SELECTOR_CHAIN(signal_L, signal_R, challenge, preresponseL, preresponseR)
     (* KEEP = "TRUE" *) MUX mux37_1(result36[0], result36[1], challenge[37], result37[1]);
     (* KEEP = "TRUE" *) MUX mux38_0(result37[1], result37[0], challenge[38], result38[0]);
     (* KEEP = "TRUE" *) MUX mux38_1(result37[0], result37[1], challenge[38], result38[1]);
-    (* KEEP = "TRUE" *) MUX mux39_0(result38[1], result38[0], challenge[39], result39[0]);
-    (* KEEP = "TRUE" *) MUX mux39_1(result38[0], result38[1], challenge[39], result39[1]);
-            
+    //(* KEEP = "TRUE" *) MUX mux39_0(result38[1], result38[0], challenge[39], result39[0]);
+    //(* KEEP = "TRUE" *) MUX mux39_1(result38[0], result38[1], challenge[39], result39[1]);
+	 (* KEEP = "TRUE" *) MUX mux39_0(result38[1], result38[0], challenge[39], preresponseR);
+    (* KEEP = "TRUE" *) MUX mux39_1(result38[0], result38[1], challenge[39], preresponseL);
+
+/*            
     (* KEEP = "TRUE" *) MUX mux40_0(result39[1], result39[0], challenge[40], result40[0]);
     (* KEEP = "TRUE" *) MUX mux40_1(result39[0], result39[1], challenge[40], result40[1]);
     (* KEEP = "TRUE" *) MUX mux41_0(result40[1], result40[0], challenge[41], result41[0]);

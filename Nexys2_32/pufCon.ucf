@@ -1,14 +1,21 @@
-NET "L0" LOC = "M5";
-NET "L1" LOC = "M11";
-NET "L2" LOC = "P7";
-NET "L3" LOC = "P6";
+NET "L0" LOC = "J14";
+NET "L1" LOC = "J15";
+NET "L2" LOC = "K15";
+NET "L3" LOC = "K14";
 
-NET "L4" LOC = "N5";
-NET "L5" LOC = "N4";
-NET "L6" LOC = "P4";
-NET "L7" LOC = "G1";
+NET "L4" LOC = "E16";
+NET "L5" LOC = "P16";
+NET "L6" LOC = "E4";
+NET "L7" LOC = "P4";
 
-NET "SW1" LOC = "P11";
+NET "SW0" LOC = "G18";
+
+NET "SW1" LOC = "H18";
+NET "SW2" LOC = "K18";
+NET "SW3" LOC = "K17";
+NET "SW4" LOC = "L14";
+
+NET "RST" LOC = "R17";
 
 NET "Clk" LOC = "B8"; #need clk pin
 NET "Clk" PERIOD = 20ns;

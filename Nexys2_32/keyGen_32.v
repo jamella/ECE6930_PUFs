@@ -1,40 +1,45 @@
 `timescale 1ns / 1ps
 
-module keyGen(Clk,L0,L1,L2,L3,L4,L5,L6,L7,SW1);
+module keyGen(Clk,L0,L1,L2,L3,L4,L5,L6,L7,SW0,SW1,SW2,SW3,SW4,RST);
 
-	input Clk, SW1;
+	input Clk, SW0,SW1,SW2,SW3,SW4,RST;
 	
 	output reg L0,L1,L2,L3,L4,L5,L6,L7;
 	
 	//wire [63:0] r;
-	wire [15:0] r;
+	wire [31:0] r;
 	
 	//reg [63:0] response;
-	reg [15:0] response;
+	reg [31:0] response;
 	
 	reg[8:0] iter, iterNext;
 	(* KEEP = "TRUE" *) reg exciteL, exciteR;
 
 	//reg [63:0] challenge;
-	reg [15:0] challenge;
+	reg [31:0] challenge;
+	
+	reg reset;
 	
 	initial begin
 		iter = 0;
+		reset = 0;
 		iterNext = 0;
 		exciteL = 1;
 		exciteR = 1;
 		//challenge = 64'hFFFFFFFFFFFFFFFF;
-		challenge = 16'hFFFF;
+		challenge = 32'hFFFFFFFF;
 		
 	end
 	
 	always @(*) begin
-		iterNext = iter + 1;
+			iterNext = iter + 1;
 	end
 	
 	always @(posedge Clk)
 	begin
-		iter = iterNext;
+		if(reset == 0)begin
+			iter = iterNext;
+		end
 	end
 	
 	(* KEEP = "TRUE" *) DAPUF p0(challenge, exciteL, exciteR, r[0]);
@@ -56,8 +61,7 @@ module keyGen(Clk,L0,L1,L2,L3,L4,L5,L6,L7,SW1);
 	(* KEEP = "TRUE" *) DAPUF p13(challenge, exciteL, exciteR, r[13]);
 	(* KEEP = "TRUE" *) DAPUF p14(challenge, exciteL, exciteR, r[14]);
 	(* KEEP = "TRUE" *) DAPUF p15(challenge, exciteL, exciteR, r[15]);
-
-/*	
+	
 	(* KEEP = "TRUE" *) DAPUF p16(challenge, exciteL, exciteR, r[16]);
 	(* KEEP = "TRUE" *) DAPUF p17(challenge, exciteL, exciteR, r[17]);
 	(* KEEP = "TRUE" *) DAPUF p18(challenge, exciteL, exciteR, r[18]);
@@ -78,7 +82,7 @@ module keyGen(Clk,L0,L1,L2,L3,L4,L5,L6,L7,SW1);
 	(* KEEP = "TRUE" *) DAPUF p30(challenge, exciteL, exciteR, r[30]);
 	(* KEEP = "TRUE" *) DAPUF p31(challenge, exciteL, exciteR, r[31]);
 
-	
+/*	
 	(* KEEP = "TRUE" *) DAPUF p32(challenge, exciteL, exciteR, r[32]);
 	(* KEEP = "TRUE" *) DAPUF p33(challenge, exciteL, exciteR, r[33]);
 	(* KEEP = "TRUE" *) DAPUF p34(challenge, exciteL, exciteR, r[34]);
@@ -119,30 +123,40 @@ module keyGen(Clk,L0,L1,L2,L3,L4,L5,L6,L7,SW1);
 	(* KEEP = "TRUE" *) DAPUF p62(challenge, exciteL, exciteR, r[62]);
 	(* KEEP = "TRUE" *) DAPUF p63(challenge, exciteL, exciteR, r[63]);
 */
-
+	
 	always @(posedge Clk)
 	begin
+	
 		if(iter == 1)begin
 			exciteL = 0;
 			exciteR = 0;
 			
-			if(SW1 == 1)begin
+			if(SW0 == 1)begin
 				//challenge = 64'hAAAAAAAAAAAAAAAA;
-				challenge = 16'hAAAA;
+				//challenge = 32'hAAAAAAAA; //1
+				//challenge = 32'h12345678; //2
+				//challenge = 32'hDEADBEEF; //3
+				challenge = 32'h5A5A5A5A; //4
+				
 			end
 			
-			if(SW1 == 0)begin
+			if(SW0 == 0)begin
 				//challenge = 64'h5555555555555555;
-				challenge = 16'h5555;
+				//challenge = 32'h55555555; //1
+				//challenge = 32'h87654321; //2
+				//challenge = 32'hBEEFDEAD; //3
+				challenge = 32'hA5A5FFFF; //4
 			end
 		end
 		
 		if(iter == 20)begin
-			exciteL = 1;
-			exciteR = 1;
+			if(reset == 0)begin	
+				exciteL = 1;
+				exciteR = 1;
+			end
 		end
 		
-		if(iter == 50)begin
+		if(SW1 == 1 && SW2 == 0 && SW3 == 0 && SW4 == 0)begin
 			L0 = response[0];
 			L1 = response[1];
 			L2 = response[2];
@@ -153,7 +167,7 @@ module keyGen(Clk,L0,L1,L2,L3,L4,L5,L6,L7,SW1);
 			L7 = response[7];
 		end
 		
-		if(iter == 70)begin
+		else if(SW2 == 1 && SW1 == 0 && SW3 == 0 && SW4 == 0)begin
 			L0 = response[8];
 			L1 = response[9];
 			L2 = response[10];
@@ -163,8 +177,8 @@ module keyGen(Clk,L0,L1,L2,L3,L4,L5,L6,L7,SW1);
 			L6 = response[14];
 			L7 = response[15];
 		end
-/*		
-		if(iter == 90)begin
+		
+		else if(SW3 == 1 && SW1 == 0 && SW2 == 0 && SW4 == 0)begin
 			L0 = response[16];
 			L1 = response[17];
 			L2 = response[18];
@@ -175,7 +189,7 @@ module keyGen(Clk,L0,L1,L2,L3,L4,L5,L6,L7,SW1);
 			L7 = response[23];
 		end
 		
-		if(iter == 110)begin
+		else if(SW4 == 1 && SW1 == 0 && SW2 == 0 && SW3 == 0)begin
 			L0 = response[24];
 			L1 = response[25];
 			L2 = response[26];
@@ -185,8 +199,19 @@ module keyGen(Clk,L0,L1,L2,L3,L4,L5,L6,L7,SW1);
 			L6 = response[30];
 			L7 = response[31];
 		end
+		
+		else begin
+			L0 = 0;
+			L1 = 0;
+			L2 = 0;
+			L3 = 0;
+			L4 = 0;
+			L5 = 0;
+			L6 = 0;
+			L7 = 0;
+		end
 
-
+/*
 		if(iter == 130)begin
 			L0 = response[32];
 			L1 = response[33];
@@ -235,6 +260,14 @@ module keyGen(Clk,L0,L1,L2,L3,L4,L5,L6,L7,SW1);
 	
 	always@(*) begin
 		response = {r};
+		
+		if(RST == 1)begin
+			reset = 1;
+		end
+		
+		if(RST == 0)begin
+			reset = 0;
+		end
 	end 
 	
 endmodule
